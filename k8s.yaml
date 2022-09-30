@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fai-dashboard
+spec:
+  selector:
+    matchLabels:
+      app: fai-dashboard
+  template:
+    metadata:
+      labels:
+        app: fai-dashboard
+    spec:
+      containers:
+      - name: fai-dashboard
+        image: fai-dashboard-img
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1"
+        ports:
+        - containerPort: 8051
+        args: ["app.py"]
+        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fai-dashboard
+spec:
+  type: LoadBalancer
+  selector:
+    app: fai-dashboard
+  ports:
+  - port: 80
+    targetPort: 8051

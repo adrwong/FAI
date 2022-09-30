@@ -1,0 +1,2 @@
+def vote():
+    return None
