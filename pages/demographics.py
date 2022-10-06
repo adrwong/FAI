@@ -1,4 +1,3 @@
-from turtle import width
 import dash
 from dash import html, dcc, callback, Input, Output
 import pandas as pd

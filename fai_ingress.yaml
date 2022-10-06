@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fai-dashboard
+  namespace: fai
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "47.242.74.18"
+spec:
+  ingressClassName: prod-open-alb
+  rules:
+    - host: fai-dashboard.api.asklora.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fai-dashboard
+                port:
+                  number: 80
