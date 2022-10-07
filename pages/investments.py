@@ -41,7 +41,7 @@ nested = [
 ]
 
 for nest in nested:
-    data_df[nest] = data_df[nest].apply(lambda x: x[1:-1].split(','))
+    data_df[nest] = data_df[nest].apply(lambda x: x[1:-1].split(', '))
 
 layout = html.Div(children=[
     html.H5(
@@ -142,6 +142,7 @@ def update_graph(demo, gps, percent, gp_method, bin_fin):
         temp_df = temp_df.explode(nest)
         temp_df = temp_df.groupby(
             [demo, nest], as_index=False).size()
+        logger.info(temp_df[nest].tolist())
         fig2 = px.histogram(
             temp_df,
             x=nest,

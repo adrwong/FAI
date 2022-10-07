@@ -30,7 +30,7 @@ with open('utils/fin_bin_groups.json', 'r') as f:
 
 
 title_5th = demo_mapping[5]['value']
-data_df[title_5th] = data_df[title_5th].apply(lambda x: x[1:-1].split(','))
+data_df[title_5th] = data_df[title_5th].apply(lambda x: x[1:-1].split(', '))
 
 layout = html.Div(children=[
     html.H5(
