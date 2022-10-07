@@ -1,0 +1,102 @@
+{
+    "Are you a Hong Kong resident?" :[
+        {
+            "label": "True",
+            "value": "True"
+        },
+        {
+            "label": "False",
+            "value": "False"
+        }
+    ],
+    "7. Do you have a virtual bank account?": [
+        {
+            "label": "User, Active",
+            "value": "User, Active"
+        },
+        {
+            "label": "User, Inactive",
+            "value": "User, Inactive"
+        },
+        {
+            "label": "Nonuser, Interesed",
+            "value": "Nonuser, Interesed"
+        },
+        {
+            "label": "Nonuser, Uninteresed",
+            "value": "Nonuser, Uninteresed"
+        }
+    ],
+    "9. Have you ever used mobile payment?": [
+        {
+            "label": "User, Active",
+            "value": "User, Active"
+        },
+        {
+            "label": "User, Inactive",
+            "value": "User, Inactive"
+        },
+        {
+            "label": "Nonuser, Interesed",
+            "value": "Nonuser, Interesed"
+        },
+        {
+            "label": "Nonuser, Uninteresed",
+            "value": "Nonuser, Uninteresed"
+        }
+    ],
+    "11. Do you have an online stock brokers platform account?": [
+        {
+            "label": "User, Active",
+            "value": "User, Active"
+        },
+        {
+            "label": "User, Inactive",
+            "value": "User, Inactive"
+        },
+        {
+            "label": "Nonuser, Interesed",
+            "value": "Nonuser, Interesed"
+        },
+        {
+            "label": "Nonuser, Uninteresed",
+            "value": "Nonuser, Uninteresed"
+        }
+    ],
+    "13. Have you ever used digital insurance?": [
+        {
+            "label": "User, Active",
+            "value": "User, Active"
+        },
+        {
+            "label": "User, Inactive",
+            "value": "User, Inactive"
+        },
+        {
+            "label": "Nonuser, Interesed",
+            "value": "Nonuser, Interesed"
+        },
+        {
+            "label": "Nonuser, Uninteresed",
+            "value": "Nonuser, Uninteresed"
+        }
+    ],
+    "15. Have you ever traded cryptocurrency?": [
+        {
+            "label": "User, Active",
+            "value": "User, Active"
+        },
+        {
+            "label": "User, Inactive",
+            "value": "User, Inactive"
+        },
+        {
+            "label": "Nonuser, Interesed",
+            "value": "Nonuser, Interesed"
+        },
+        {
+            "label": "Nonuser, Uninteresed",
+            "value": "Nonuser, Uninteresed"
+        }
+    ]
+}

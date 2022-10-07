@@ -1,0 +1,53 @@
+[
+    {
+        "label": "User, Active",
+        "value": "User, Active"
+    },
+    {
+        "label": "User, Inactive",
+        "value": "User, Inactive"
+    },
+    {
+        "label": "Nonuser, Interesed",
+        "value": "Nonuser, Interesed"
+    },
+    {
+        "label": "Nonuser, Uninteresed",
+        "value": "Nonuser, Uninteresed"
+    },
+    {
+        "label": "Virtual Bank",
+        "value": "7. Do you have a virtual bank account?"
+    },
+    {
+        "label": "Mobile Payment",
+        "value": "9. Have you ever used mobile payment?"
+    },
+    {
+        "label": "Online Brokers",
+        "value": "11. Do you have an online stock brokers platform account?"
+    },
+    {
+        "label": "Digital Insurance",
+        "value": "13. Have you ever used digital insurance?"
+    },
+    {
+        "label": "Cryptocurrency",
+        "value": "15. Have you ever traded cryptocurrency?"
+    },
+    {
+        "label": "User",
+        "value": "User"
+    },
+    {
+        "label": "Nonuser",
+        "value": "Nonuser"
+    },
+
+
+
+    {
+        "label": "All",
+        "value": "Are you a Hong Kong resident?"
+    }
+]

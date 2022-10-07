@@ -1,0 +1,62 @@
+{
+    "Are you a Hong Kong resident?" :[
+        {
+            "label": "True",
+            "value": "True"
+        },
+        {
+            "label": "False",
+            "value": "False"
+        }
+    ],
+    "7. Do you have a virtual bank account?": [
+        {
+            "label": "User",
+            "value": "User"
+        },
+        {
+            "label": "Nonuser",
+            "value": "Nonuser"
+        }
+    ],
+    "9. Have you ever used mobile payment?": [
+        {
+            "label": "User",
+            "value": "User"
+        },
+        {
+            "label": "Nonuser",
+            "value": "Nonuser"
+        }
+    ],
+    "11. Do you have an online stock brokers platform account?": [
+        {
+            "label": "User",
+            "value": "User"
+        },
+        {
+            "label": "Nonuser",
+            "value": "Nonuser"
+        }
+    ],
+    "13. Have you ever used digital insurance?": [
+        {
+            "label": "User",
+            "value": "User"
+        },
+        {
+            "label": "Nonuser",
+            "value": "Nonuser"
+        }
+    ],
+    "15. Have you ever traded cryptocurrency?": [
+        {
+            "label": "User",
+            "value": "User"
+        },
+        {
+            "label": "Nonuser",
+            "value": "Nonuser"
+        }
+    ]
+}

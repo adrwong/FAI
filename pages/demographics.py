@@ -19,6 +19,15 @@ with open('utils/demo_mapping.json', 'r') as f:
     demo_mapping = json.load(f)
 with open('utils/demo_groups.json', 'r') as f:
     demo_groups = json.load(f)
+with open('utils/fin_mapping.json', 'r') as f:
+    fin_mapping = json.load(f)
+with open('utils/fin_groups.json', 'r') as f:
+    fin_groups = json.load(f)
+with open('utils/fin_bin_mapping.json', 'r') as f:
+    fin_bin_mapping = json.load(f)
+with open('utils/fin_bin_groups.json', 'r') as f:
+    fin_bin_groups = json.load(f)
+
 
 title_5th = demo_mapping[5]['value']
 data_df[title_5th] = data_df[title_5th].apply(lambda x: x[1:-1].split(','))
@@ -46,23 +55,50 @@ layout = html.Div(children=[
     [
         Input(component_id='demograph', component_property='value'),
         Input(component_id='groups', component_property='value'),
-        Input(component_id='percent', component_property='value')
+        Input(component_id='percent', component_property='value'),
+        Input(component_id='gp_method', component_property='value'),
+        Input(component_id='bin_fin', component_property='value'),
     ]
 )
-def update_graph(demo, gps, percent):
+def update_graph(demo, gps, percent, gp_method, bin_fin):
+
     histnorm = None
     if percent:
         histnorm = 'percent'
-    logger.info(demo)
-    logger.info(gps)
     if gps == None or gps == []:
         return html.H3('Please select groups to show')
     columns = data_df.columns.values.tolist()[1:6]
+
+    if gp_method == "demo":
+        groups = demo_groups
+        mappings = demo_mapping
+        temp_df = data_df[[demo]].copy()
+        temp_df = temp_df[temp_df[demo].isin(gps)]
+        temp_df_l = data_df.copy()
+
+    elif gp_method == "fin" and bin_fin:
+        groups = fin_bin_groups
+        mappings = fin_bin_mapping
+        temp_df = data_df[[demo]].copy()
+        temp_df = temp_df[temp_df[demo].isin(gps)]
+        temp_df[demo] = temp_df[demo].apply(
+            lambda x: 'User' if x in ['User, Inactive', 'User, Active'] else 'Nonuser')
+        gps = ['User', 'Nonuser']
+        temp_df_l = data_df.copy()
+        temp_df_l[demo] = temp_df_l[demo].apply(
+            lambda x: 'User' if x in ['User, Inactive', 'User, Active'] else 'Nonuser')
+
+    elif gp_method == "fin":
+        groups = fin_groups
+        mappings = fin_mapping
+        temp_df = data_df[[demo]].copy()
+        temp_df = temp_df[temp_df[demo].isin(gps)]
+        temp_df_l = data_df.copy()
+
     if demo in columns:
         columns.remove(demo)
+
     charts = []
-    temp_df = data_df[[demo]].copy()
-    temp_df = temp_df[temp_df[demo].isin(gps)]
     temp_df = temp_df.groupby([demo], as_index=False).size()
     if demo != all_demo:
         fig0 = px.pie(
@@ -70,11 +106,11 @@ def update_graph(demo, gps, percent):
             values='size',
             names=demo,
             labels={
-                demo: next(i for i in demo_mapping if i['value'] == demo)[
+                demo: next(i for i in mappings if i['value'] == demo)[
                     'label']
             },
             category_orders={
-                demo: [i['value'] for i in demo_groups[demo]]
+                demo: [i['value'] for i in groups[demo]]
             },
             title=f"Groups Distribution",
         ).update_layout(plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)')
@@ -86,7 +122,7 @@ def update_graph(demo, gps, percent):
 
     for idx, col in enumerate(columns):
 
-        temp_df = data_df[[demo, col]].copy()
+        temp_df = temp_df_l[[demo, col]].copy()
         temp_df = temp_df[temp_df[demo].isin(gps)]
         temp_df = temp_df.groupby(
             [demo, col], as_index=False).size()
@@ -101,12 +137,12 @@ def update_graph(demo, gps, percent):
                 col: next(i for i in demo_mapping if i['value'] == col)[
                     'label'],
                 'sum of size': 'count',
-                demo: next(i for i in demo_mapping if i['value'] == demo)[
+                demo: next(i for i in mappings if i['value'] == demo)[
                     'label']
             },
             category_orders={
                 col: [i['value'] for i in demo_groups[col]],
-                demo: [i['value'] for i in demo_groups[demo]]
+                demo: [i['value'] for i in groups[demo]]
             },
             title='<br>'.join(textwrap.wrap(col, width=80))
         ).update_layout(plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)')
@@ -116,7 +152,7 @@ def update_graph(demo, gps, percent):
             style={'display': 'inline-block'}
         ))
 
-    temp_df = data_df[[demo, title_5th]].copy()
+    temp_df = temp_df_l[[demo, title_5th]].copy()
     temp_df = temp_df[temp_df[demo].isin(gps)]
     temp_df = temp_df.explode(title_5th)
     temp_df = temp_df.groupby(
@@ -131,11 +167,11 @@ def update_graph(demo, gps, percent):
         labels={
             title_5th: demo_mapping[5]['label'],
             'sum of size': 'count',
-            demo: next(i for i in demo_mapping if i['value'] == demo)[
+            demo: next(i for i in mappings if i['value'] == demo)[
                 'label']
         },
         category_orders={
-            demo: [i['value'] for i in demo_groups[demo]]
+            demo: [i['value'] for i in groups[demo]]
         },
         title='<br>'.join(textwrap.wrap(title_5th, width=80))
     ).update_layout(plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)')
@@ -146,7 +182,7 @@ def update_graph(demo, gps, percent):
     ))
 
     col = demo_mapping[6]['value']
-    temp_df = data_df[[demo, col]].copy()
+    temp_df = temp_df_l[[demo, col]].copy()
     temp_df = temp_df[temp_df[demo].isin(gps)]
     temp_df = temp_df.groupby(
         [demo, col], as_index=False).size()
@@ -159,12 +195,12 @@ def update_graph(demo, gps, percent):
         labels={
             col: demo_mapping[6]['label'],
             'sum of size': 'count',
-            demo: next(i for i in demo_mapping if i['value'] == demo)[
+            demo: next(i for i in mappings if i['value'] == demo)[
                 'label']
         },
         category_orders={
             col: [i['value'] for i in demo_groups[col]],
-            demo: [i['value'] for i in demo_groups[demo]]
+            demo: [i['value'] for i in groups[demo]]
         },
         title='<br>'.join(textwrap.wrap(col, width=80))
     ).update_layout(plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)')
