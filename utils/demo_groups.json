@@ -11,10 +11,6 @@
     ],
     "Please select your age group? (Only certain age groups are eligible for the survey.)" :[
         {
-            "label": "<18",
-            "value": "<18"
-        },
-        {
             "label": "18-29",
             "value": "18-29"
         },

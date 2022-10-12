@@ -69,7 +69,7 @@ def update_graph(demo, gps, percent, gp_method, bin_fin):
         mappings = demo_mapping
         temp_df_l = data_df.copy()
 
-    elif gp_method == "fin" and bin_fin:
+    elif gp_method == "fin" and bin_fin and demo != "Are you a Hong Kong resident?":
         groups = fin_bin_groups
         mappings = fin_bin_mapping
         temp_df_l = data_df.copy()
